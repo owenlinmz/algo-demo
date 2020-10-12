@@ -18,8 +18,6 @@ public class Main {
 
         ListNode() {
         }
-
-        ;
     }
 
     public static void main(String[] args) {
@@ -51,10 +49,19 @@ public class Main {
 
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode newNode = new ListNode();
+        ListNode baseNode = newNode;
         while (l1 != null || l2 != null) {
             if (newNode == null) {
                 newNode = new ListNode();
             }
+            if (l1 == null) {
+                newNode.next = l2;
+                break;
+            } else if (l2 == null) {
+                newNode.next = l1;
+                break;
+            }
+
             if (l1.val < l2.val) {
                 newNode.val = l1.val;
                 newNode.next = null;
@@ -66,11 +73,7 @@ public class Main {
             }
             newNode = null;
         }
+        return baseNode;
     }
-
-    public static ListNode addNode(int val) {
-        return new ListNode(val, null);
-    }
-
 
 }
